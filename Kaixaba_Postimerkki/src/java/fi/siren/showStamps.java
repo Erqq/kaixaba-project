@@ -7,8 +7,6 @@ package fi.siren;
  * and open the template in the editor.
  */
  
-import fi.siren.Stamp;
-import fi.siren.StampService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -23,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Miika
  */
+// http://localhost:8080/Kaixaba_Postimerkki/showStamps
 @WebServlet(urlPatterns = {"/showStamps"})
 public class showStamps extends HttpServlet {
      

@@ -55,9 +55,9 @@ public class Stamp {
     
     public Stamp() {}
 
-    public Stamp(String tags, String releaseDate, String endDate, String value, String name, 
-            String color, String printLocation, String printAmount, String artist,
-            String currency, String url) {
+    public Stamp(String tags, String releaseDate, String endDate, String value,
+            String name, String color, String printLocation, String printAmount,
+            String artist,String currency, String url) {
         this.tags = tags;
         this.releaseDate = releaseDate;
         this.endDate = endDate;
