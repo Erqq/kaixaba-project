@@ -23,25 +23,25 @@ public class Stamp {
     @Column(name = "asiasanat")
     private String tags;
      
-    @Column(name = "ilmestymispaiva")
+    @Column(name = "ilmestymispäivä")
     private String releaseDate;
     
-    @Column(name = "kayton_paattyminen")
+    @Column(name = "käytön_päättyminen")
     private String endDate;
     
     @Column(name = "nimellisarvo")
     private String value;
     
-    @Column(name = "nimi")
+    @Column(name = "merkin_nimi")
     private String name;
     
-    @Column(name = "vari")
+    @Column(name = "merkin_väri")
     private String color;
     
     @Column(name = "painopaikka")
     private String printLocation;
     
-    @Column(name = "painosmaara")
+    @Column(name = "painosmäärä")
     private String printAmount;
     
     @Column(name = "taiteilija")
