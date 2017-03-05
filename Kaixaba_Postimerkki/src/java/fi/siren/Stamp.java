@@ -169,11 +169,14 @@ public class Stamp {
 
     @Override
     public String toString() {
-        return "Stamp{" + "id=" + id + ", tags=" + tags + ", releaseDate=" + 
+        return '{' + "id=" + id + ", tags=" + tags + ", releaseDate=" + 
                 releaseDate + ", endDate=" + endDate + ", value=" + value + 
                 ", name=" + name + ", color=" + color + ", printLocation=" + 
                 printLocation + ", printAmount=" + printAmount + ", artist=" + 
                 artist + ", currency=" + currency + ", url=" + url + '}';
     }
-
+    
+    public String toJson() {
+        return "{" + "\"id\":" + id + ", \"tags\":\"" + tags + "\"}";
+    }
 }
