@@ -24,12 +24,12 @@ public class getStamps extends HttpServlet {
         
         try (PrintWriter out = response.getWriter()) {
              
-            List stamps = stmp.getStamps();
+            List<Stamp> stamps = stmp.getStamps();
             
             out.println("[");
              
             for (int i = 0; i < stamps.size(); i++) {
-                out.println(stamps.get(i));
+                out.println(stamps.get(i).toJson());
                 if (i+1 < stamps.size()) {
                     out.println(", "); 
                 }
