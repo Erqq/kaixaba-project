@@ -17,5 +17,5 @@ public interface StampService {
     Stamp createOrUpdate(Stamp stamp);
     void remove(Stamp stamp);
     Stamp find(Object id);
-    List<Object> getStamps() throws Exception;
+    List<Stamp> getStamps() throws Exception;
 }
