@@ -35,7 +35,7 @@ public class StampBean implements StampService {
     }
      
     @Override
-    public List<Object> getStamps() throws Exception {
+    public List<Stamp> getStamps() throws Exception {
         Query query = em.createQuery("Select obj from Stamp as obj");
         return query.getResultList();
     }
