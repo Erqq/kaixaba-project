@@ -58,7 +58,17 @@ var Result = React.createClass({
                         <thead>
                             <tr>
                                 <th className="col-md-4">ID</th>
-                                <th >TAGS</th>
+                                <th>TAGS</th>
+                                <th>RELEASE-DATE</th>
+                                <th>END-DATE</th>
+                                <th>VALUE</th>
+                                <th>NAME</th>
+                                <th>COLOR</th>
+                                <th>PRINT LOCATION</th>
+                                <th>PRINT AMOUNT</th>
+                                <th>ARTIST</th>
+                                <th>CURRENCY</th>
+                                <th>URL</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -77,6 +87,16 @@ var ResultItem = React.createClass({
             <tr >
                 <td>{camper.id}</td>
                 <td>{camper.tags}</td>
+                <td>{camper.releaseDate}</td>
+                <td>{camper.endDate}</td>
+                <td>{camper.value}</td>
+                <td>{camper.name}</td>
+                <td>{camper.color}</td>
+                <td>{camper.printLocation}</td>
+                <td>{camper.printAmount}</td>
+                <td>{camper.artist}</td>
+                <td>{camper.currency}</td>
+                <td><img src={camper.url} /></td>
             </tr>
         );
     }
