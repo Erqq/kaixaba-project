@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
- 
+
 /**
  *
  * @author c5msiren
@@ -14,50 +14,51 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Postimerkit")
 public class Stamp {
-      
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    
+
     @Column(name = "asiasanat")
     private String tags;
-     
+
     @Column(name = "ilmestymispäivä")
     private String releaseDate;
-    
+
     @Column(name = "käytön_päättyminen")
     private String endDate;
-    
+
     @Column(name = "nimellisarvo")
     private String value;
-    
+
     @Column(name = "merkin_nimi")
     private String name;
-    
+
     @Column(name = "merkin_väri")
     private String color;
-    
+
     @Column(name = "painopaikka")
     private String printLocation;
-    
+
     @Column(name = "painosmäärä")
     private String printAmount;
-    
+
     @Column(name = "taiteilija")
     private String artist;
-    
+
     @Column(name = "valuutta")
     private String currency;
-    
+
     @Column(name = "kuvan_url")
     private String url;
-    
-    public Stamp() {}
+
+    public Stamp() {
+    }
 
     public Stamp(String tags, String releaseDate, String endDate, String value,
             String name, String color, String printLocation, String printAmount,
-            String artist,String currency, String url) {
+            String artist, String currency, String url) {
         this.tags = tags;
         this.releaseDate = releaseDate;
         this.endDate = endDate;
@@ -158,25 +159,36 @@ public class Stamp {
     public void setUrl(String url) {
         this.url = url;
     }
-  
+
     public int getId() {
         return id;
     }
-  
+
     public void setId(int id) {
         this.id = id;
     }
 
     @Override
     public String toString() {
-        return '{' + "id=" + id + ", tags=" + tags + ", releaseDate=" + 
-                releaseDate + ", endDate=" + endDate + ", value=" + value + 
-                ", name=" + name + ", color=" + color + ", printLocation=" + 
-                printLocation + ", printAmount=" + printAmount + ", artist=" + 
-                artist + ", currency=" + currency + ", url=" + url + '}';
+        return '{' + "id=" + id + ", tags=" + tags + ", releaseDate="
+                + releaseDate + ", endDate=" + endDate + ", value=" + value
+                + ", name=" + name + ", color=" + color + ", printLocation="
+                + printLocation + ", printAmount=" + printAmount + ", artist="
+                + artist + ", currency=" + currency + ", url=" + url + '}';
     }
-    
+
     public String toJson() {
-        return "{" + "\"id\":" + id + ", \"tags\":\"" + tags + "\"}";
+        return "{" + "\"id\":" + id + ", \"tags\":\"" + tags + "\", "
+                + "\"releaseDate\":\"" + releaseDate + "\", "
+                + "\"endDate\":\"" + endDate + "\", "
+                + "\"value\":" + value + ", "
+                + "\"name\":\"" + name + "\", "
+                + "\"color\":\"" + color + "\", "
+                + "\"printLocation\":\"" + printLocation + "\", "
+                + "\"printAmount\":" + printAmount + ", "
+                + "\"artist\":\"" + artist + "\", "
+                + "\"currency\":\"" + currency + "\", "
+                + "\"url\":\"" + url + "\""
+                + "}";
     }
 }
