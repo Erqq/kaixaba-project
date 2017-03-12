@@ -22,15 +22,17 @@ public class getStamps extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        int amountToGet = 12;
+        
         try (PrintWriter out = response.getWriter()) {
              
             List<Stamp> stamps = stmp.getStamps();
             
             out.println("[");
              
-            for (int i = 0; i < stamps.size(); i++) {
+            for (int i = 0; i < amountToGet; i++) {
                 out.println(stamps.get(i).toJson());
-                if (i+1 < stamps.size()) {
+                if (i+1 < amountToGet) {
                     out.println(", "); 
                 }
             }
