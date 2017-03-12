@@ -52,29 +52,9 @@ var Result = React.createClass({
             return <ResultItem key={index} user={ result } />
             });
         return(
-            <div className="row">
-                <div className="col-md-12">
-                    <table className="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th className="col-md-4">ID</th>
-                                <th>TAGS</th>
-                                <th>RELEASE-DATE</th>
-                                <th>END-DATE</th>
-                                <th>VALUE</th>
-                                <th>NAME</th>
-                                <th>COLOR</th>
-                                <th>PRINT LOCATION</th>
-                                <th>PRINT AMOUNT</th>
-                                <th>ARTIST</th>
-                                <th>CURRENCY</th>
-                                <th>URL</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {result}
-                        </tbody>
-                    </table>
+            <div className="container">
+                <div className="row">
+                    {result}
                 </div>
             </div>
         );
@@ -84,20 +64,15 @@ var ResultItem = React.createClass({
     render:function(){
         var camper = this.props.user;
         return(
-            <tr >
-                <td>{camper.id}</td>
-                <td>{camper.tags}</td>
-                <td>{camper.releaseDate}</td>
-                <td>{camper.endDate}</td>
-                <td>{camper.value}</td>
-                <td>{camper.name}</td>
-                <td>{camper.color}</td>
-                <td>{camper.printLocation}</td>
-                <td>{camper.printAmount}</td>
-                <td>{camper.artist}</td>
-                <td>{camper.currency}</td>
-                <td><img src={camper.url} /></td>
-            </tr>
+            <div className="col-xs-6 col-sm-4 col-md-3">
+            <div className="stamp">
+            <div className="col-xs-12"><h3>{camper.name}</h3></div>
+                <div className="col-xs-12"><img src={camper.url} /></div>
+                <div className="col-xs-12"><p>Ilmestynyt:&nbsp;{camper.releaseDate}</p></div>
+                <div className="col-xs-12"><p>Poistunut:&nbsp;{camper.endDate}</p></div>
+                <div className="col-xs-12"><p>Taiteilija:&nbsp;{camper.artist.length ? camper.artist : 'Ei tiedossa' }</p></div>
+            </div>
+            </div>
         );
     }
 });

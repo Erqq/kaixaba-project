@@ -1,0 +1,42 @@
+img {
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.container {
+    min-width: 512px;
+}
+
+.col-xs-4 {
+    width: 50%;
+}
+
+.stamp {
+    border: 1px solid #ccc;
+    width: 100%;
+    margin: 5px 4% 5px 4%;
+    height: auto;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.col-xs-12 {
+    background: #fafafa;
+    padding: 5px 10px
+}
+
+.col-xs-12 img {
+    display: block;
+    margin: 0 auto;
+}
+
+.col-xs-12 p {
+    display: block;
+    text-align: center;
+}
+
+.col-xs-12 h3 {
+    text-align: center;
+    margin: 10px 0% 10px 0%;
+    height: 40px;
+}
