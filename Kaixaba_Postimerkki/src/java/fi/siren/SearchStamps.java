@@ -5,13 +5,20 @@
  */
 package fi.siren;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -20,6 +27,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "SearchStamps", urlPatterns = {"/SearchStamps"})
 public class SearchStamps extends HttpServlet {
 
+    public SearchStamps(){
+        super();
+    }
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -66,14 +76,38 @@ public class SearchStamps extends HttpServlet {
      *
      * @param request servlet request
      * @param response servlet response
+     * 
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+    response.setContentType("text/html;charset=UTF-8");
+    InputStream stream = new ByteArrayInputStream(request.getReader().readLine().getBytes(StandardCharsets.UTF_8));
+    JsonReader jsonReader = Json.createReader(stream);
+    JsonObject js = jsonReader.readObject();
+    jsonReader.close();
+    fixHeaders(response);
+    
+        try (PrintWriter out = response.getWriter()) {
+            
+            out.println(js);
+            out.close();
+        }
+        
     }
+    
+    protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    fixHeaders(response);
+}
+    
+    private void fixHeaders(HttpServletResponse response) {
+    response.addHeader("Access-Control-Allow-Origin", "*");
+    response.addHeader("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS, DELETE");
+    response.addHeader("Access-Control-Allow-Headers", "Content-Type");
+    response.addHeader("Access-Control-Max-Age", "86400");
+}
 
     /**
      * Returns a short description of the servlet.
