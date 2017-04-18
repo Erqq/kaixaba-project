@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Title
+    </title>
+    <meta charset="UTF-8" />
+    <style media="screen"></style>
+    <script></script>
+    <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://unpkg.com/jquery@3.2.1"></script>
+</head>
+
+<body>
+
+<div id="root"></div>
+<script type="text/babel">
+class StampForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+    this.state = {data: "asd"}
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    alert('A computer was submitted: ');
+    event.preventDefault();
+    var frm = $(document.myform);
+    var data = getFormData(frm);
+    console.log(data);
+    fetch('http://localhost:8080/Kaixaba_Postimerkki/SearchStamps', {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+        },
+        body: JSON.stringify(data),
+        mode: "cors"
+}).then(  async function(response){
+    let data2 = await response.text();
+    this.setState({data: data2});
+    console.log(data2);
+}.bind(this))
+
+
+
+console.log(JSON.stringify(data).length);
+
+  }
+
+  render() {
+    return (
+    <div>
+      <form onSubmit={this.handleSubmit} name="myform">
+          Tags:<br/>
+          <input type="text" name="tags" defaultValue=""/>
+          <br/>
+          Release Date:<br/>
+          <input type="text" name="releaseDate" defaultValue=""/>
+          <br/>
+          End Date:<br/>
+          <input type="text" name="endDate" defaultValue=""/>
+          <br/>
+          Value:<br/>
+          <input type="text" name="value" defaultValue=""/>
+          <br/>
+          Name:<br/>
+          <input type="text" name="name" defaultValue=""/>
+          <br/>
+          Print Location:<br/>
+          <input type="text" name="printLocation" defaultValue=""/>
+          <br/>
+          Print Amount:<br/>
+          <input type="text" name="printAmount" defaultValue=""/>
+          <br/>
+          Artist:<br/>
+          <input type="text" name="artist" defaultValue=""/>
+          <br/>
+          Currency:<br/>
+          <input type="text" name="currency" defaultValue=""/>
+          <br/>
+        <input type="submit" value="Submit" />
+      </form>
+      <h1>
+      {this.state.data}
+      </h1>
+      </div>
+    );
+  }
+}
+
+function getFormData($form){
+    var unindexed_array = $form.serializeArray();
+    var indexed_array = {};
+
+    $.map(unindexed_array, function(n, i){
+        indexed_array[n['name']] = n['value'];
+    });
+
+    return indexed_array;
+}
+
+ReactDOM.render(
+            <StampForm/>,
+            document.getElementById('root')
+        );
+</script>
+
+
+
+<p>If you click the "Submit" button, the form-data will be sent to a function called handleSubmit.</p>
+
+</body>
+</html>
