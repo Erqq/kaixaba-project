@@ -40,7 +40,7 @@ class StampForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.getDataFromServer('http://localhost:8080/Kaixaba_Postimerkki/SearchStamps');
+    this.getDataFromServer('http://localhost:8080/Kaixaba_Postimerkki/getStamps');
     var frm = $(document.myform);
     var data = getFormData(frm);
     }
@@ -96,10 +96,11 @@ var Result = React.createClass({
 var ResultItem = React.createClass({
     render:function(){
         var camper = this.props.user;
-        return(
-            <div className="col-xs-6 col-sm-4 col-md-3">
-            <div className="stamp">
-            <div className="col-xs-12"><h3>{camper.name}</h3></div>
+        if (camper.releaseDate){
+            return(
+                <div className="col-xs-6 col-sm-4 col-md-3">
+                <div className="stamp">
+                <div className="col-xs-12"><h3>{camper.name}</h3></div>
                 <div className="col-xs-12"><img src={camper.url} /></div>
                 <div className="col-xs-12"><p>Ilmestynyt:&nbsp;{camper.releaseDate}</p></div>
                 <div className="col-xs-12"><p>Poistunut:&nbsp;{camper.endDate}</p></div>
@@ -111,9 +112,11 @@ var ResultItem = React.createClass({
                 <div className="col-xs-12"><p>Taiteilija:&nbsp;{camper.artist}</p></div>
 
 
-            </div>
-            </div>
-        );
+                </div>
+                </div>
+            );
+        }
+        return <div></div>
     }
 });
 
