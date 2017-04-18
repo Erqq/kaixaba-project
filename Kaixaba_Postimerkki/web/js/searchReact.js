@@ -126,7 +126,8 @@ var Result = React.createClass({
 var ResultItem = React.createClass({
     render:function(){
         var camper = this.props.user;
-        return(
+        if (camper.releaseDate){
+            return(
             <div className="col-xs-6 col-sm-4 col-md-3">
             <div className="stamp">
             <div className="col-xs-12"><h3>{camper.name}</h3></div>
@@ -144,6 +145,9 @@ var ResultItem = React.createClass({
             </div>
             </div>
         );
+        }
+        return <div></div>
+        
     }
 });
 
