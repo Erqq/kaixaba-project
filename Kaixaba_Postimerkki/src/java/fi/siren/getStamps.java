@@ -21,6 +21,7 @@ public class getStamps extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        fixHeaders(response);
         
         int amountToGet = 12;
         
@@ -43,5 +44,17 @@ public class getStamps extends HttpServlet {
             ex.printStackTrace();
         }
     }
+    
+    
+    private void fixHeaders(HttpServletResponse response) {
+    response.addHeader("Access-Control-Allow-Origin", "*");
+    response.addHeader("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS, DELETE");
+    response.addHeader("Access-Control-Allow-Headers", "Content-Type");
+    response.addHeader("Access-Control-Max-Age", "86400");
+}
+    
+    protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    fixHeaders(response);
+}
 
 }
