@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
@@ -26,7 +29,8 @@ import javax.ws.rs.core.Response;
  */
 @WebServlet(name = "SearchStamps", urlPatterns = {"/SearchStamps"})
 public class SearchStamps extends HttpServlet {
-
+    @EJB
+    public StampService stmp;
     public SearchStamps(){
         super();
     }
@@ -89,11 +93,32 @@ public class SearchStamps extends HttpServlet {
     JsonObject js = jsonReader.readObject();
     jsonReader.close();
     fixHeaders(response);
-    
+    List<Stamp> stamps;
+    List<Stamp> temp=new ArrayList<>();
         try (PrintWriter out = response.getWriter()) {
+            stamps = stmp.getStamps();
+            for(int i = 0; i< stamps.size();i++){
+                if(stamps.get(i).getReleaseDate().equals(js.getString("releaseDate"))){
+                    temp.add(stamps.get(i));
+                }   
+             }
+            out.println("[");
+             
+            for(int i = 0; i< temp.size();i++){
+               
+                   
+                    out.println(temp.get(i).toJson());
+                    if (i +1< temp.size()) {
+                    out.println(", "); 
+                    }
+               
+                  
+             }
+             out.println("]");    
             
-            out.println(js);
             out.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
         
     }

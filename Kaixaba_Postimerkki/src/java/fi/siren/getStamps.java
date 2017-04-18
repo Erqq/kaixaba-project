@@ -30,9 +30,9 @@ public class getStamps extends HttpServlet {
             
             out.println("[");
              
-            for (int i = 0; i < amountToGet; i++) {
+            for (int i = 0; i < stamps.size(); i++) {
                 out.println(stamps.get(i).toJson());
-                if (i+1 < amountToGet) {
+                if (i+1 < stamps.size()) {
                     out.println(", "); 
                 }
             }
