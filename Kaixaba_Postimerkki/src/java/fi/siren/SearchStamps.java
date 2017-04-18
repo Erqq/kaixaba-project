@@ -98,14 +98,43 @@ public class SearchStamps extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             stamps = stmp.getStamps();
             for(int i = 0; i< stamps.size();i++){
-                if(stamps.get(i).getReleaseDate().equals(js.getString("releaseDate"))){
+                if(stamps.get(i).getArtist().toLowerCase().replace(" ","")
+                        .contains(js.getString("artist").toLowerCase()
+                                .replace(" ",""))
+                        &&stamps.get(i).getCurrency()
+                                .toLowerCase().replace(" ","")
+                                .contains(js.getString("currency")
+                                        .toLowerCase().replace(" ",""))
+                        &&stamps.get(i).getEndDate().replace(" ","")
+                                .contains(js.getString("endDate")
+                                        .replace(" ",""))
+                        &&stamps.get(i).getReleaseDate().replace(" ","")
+                                .contains(js.getString("releaseDate")
+                                        .replace(" ",""))
+                        &&stamps.get(i).getValue().replace(" ","")
+                                .contains(js.getString("value")
+                                        .replace(" ",""))
+                        &&stamps.get(i).getName().replace(" ","").toLowerCase()
+                                .contains(js.getString("name").toLowerCase()
+                                        .replace(" ",""))
+                        &&stamps.get(i).getPrintLocation().replace(" ","")
+                                .toLowerCase()
+                                .contains(js.getString("printLocation")
+                                        .toLowerCase()
+                                        .replace(" ",""))
+                        &&stamps.get(i).getPrintAmount().replace(" ","")
+                                .contains(js.getString("printAmount")
+                                        .replace(" ",""))
+                        &&stamps.get(i).getColor().replace(" ","")
+                                .contains(js.getString("color")
+                                        .replace(" ",""))){
                     temp.add(stamps.get(i));
                 }   
              }
             out.println("[");
              
             for(int i = 0; i< temp.size();i++){
-               
+                    
                    
                     out.println(temp.get(i).toJson());
                     if (i +1< temp.size()) {
@@ -114,8 +143,8 @@ public class SearchStamps extends HttpServlet {
                
                   
              }
-             out.println("]");    
-            
+            out.println("]");    
+              
             out.close();
         } catch (Exception ex) {
             ex.printStackTrace();
