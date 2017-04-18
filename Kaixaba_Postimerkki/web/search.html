@@ -2,11 +2,18 @@
 <html>
 <head>
     <title>
-        Title
+        Search
     </title>
     <meta charset="UTF-8" />
     <style media="screen"></style>
     <script></script>
+    
+   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        
+    <link rel="stylesheet" type="text/css" href="css/fPage.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
     <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
@@ -21,7 +28,7 @@ class StampForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {value: ''};
-    this.state = {data: "asd"}
+    this.state = {data: ["asd"]}
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -31,37 +38,55 @@ class StampForm extends React.Component {
     this.setState({value: event.target.value});
   }
 
+  getInitialState(){
+        return{
+            data:[]
+        };
+    }
+
+    showResult(response) {
+
+            this.setState({
+                data: response
+            });
+    }
+
+
+  getDataFromServer(URL){
+  var frm = $(document.myform);
+    var data = getFormData(frm);
+        $.ajax({
+            type:"POST",
+            dataType:"json",
+            url: URL,
+            data: JSON.stringify(data),
+            success: function(response) {
+                this.showResult(response);
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+            }.bind(this)
+        });
+    }
+
+
   handleSubmit(event) {
-    alert('A computer was submitted: ');
     event.preventDefault();
+    this.getDataFromServer('http://localhost:8080/Kaixaba_Postimerkki/SearchStamps');
     var frm = $(document.myform);
     var data = getFormData(frm);
-    console.log(data);
-    fetch('http://localhost:8080/Kaixaba_Postimerkki/SearchStamps', {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json',
-        },
-        body: JSON.stringify(data),
-        mode: "cors"
-}).then(  async function(response){
-    let data2 = await response.text();
-    this.setState({data: data2});
-    console.log(data2);
-}.bind(this))
+    }
 
 
 
-console.log(JSON.stringify(data).length);
 
-  }
 
   render() {
     return (
     <div>
       <form onSubmit={this.handleSubmit} name="myform">
-          Tags:<br/>
-          <input type="text" name="tags" defaultValue=""/>
+          Color:<br/>
+          <input type="text" name="color" defaultValue=""/>
           <br/>
           Release Date:<br/>
           <input type="text" name="releaseDate" defaultValue=""/>
@@ -89,9 +114,9 @@ console.log(JSON.stringify(data).length);
           <br/>
         <input type="submit" value="Submit" />
       </form>
-      <h1>
-      {this.state.data}
-      </h1>
+      
+      <Result result={this.state.data}/>
+      
       </div>
     );
   }
@@ -108,10 +133,52 @@ function getFormData($form){
     return indexed_array;
 }
 
+
+var Result = React.createClass({
+    render:function(){
+        var result = this.props.result.map(function(result,index){
+            return <ResultItem key={index} user={ result } />
+            });
+        return(
+            <div className="container">
+                <div className="row">
+                    {result}
+                </div>
+            </div>
+        );
+    }
+});
+
+var ResultItem = React.createClass({
+    render:function(){
+        var camper = this.props.user;
+        return(
+            <div className="col-xs-6 col-sm-4 col-md-3">
+            <div className="stamp">
+            <div className="col-xs-12"><h3>{camper.name}</h3></div>
+                <div className="col-xs-12"><img src={camper.url} /></div>
+                <div className="col-xs-12"><p>Ilmestynyt:&nbsp;{camper.releaseDate}</p></div>
+                <div className="col-xs-12"><p>Poistunut:&nbsp;{camper.endDate}</p></div>
+                <div className="col-xs-12"><p>Väri:&nbsp;{camper.color}</p></div>
+                <div className="col-xs-12"><p>Nimellisarvo:&nbsp;{camper.value}</p></div>
+                <div className="col-xs-12"><p>Painopaikka:&nbsp;{camper.printLocation}</p></div>
+                <div className="col-xs-12"><p>Painomäärä:&nbsp;{camper.printAmount}</p></div>
+                <div className="col-xs-12"><p>Valuutta:&nbsp;{camper.currency}</p></div>
+                <div className="col-xs-12"><p>Taiteilija:&nbsp;{camper.artist}</p></div>
+
+
+            </div>
+            </div>
+        );
+    }
+});
+
+
 ReactDOM.render(
             <StampForm/>,
             document.getElementById('root')
         );
+
 </script>
 
 
