@@ -40,7 +40,7 @@ class StampForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.getDataFromServer('http://localhost:8080/Kaixaba_Postimerkki/getStamps');
+    this.getDataFromServer('http://postimerkit.me:8080/Kaixaba_Postimerkki/getStamps');
     var frm = $(document.myform);
     var data = getFormData(frm);
     }
