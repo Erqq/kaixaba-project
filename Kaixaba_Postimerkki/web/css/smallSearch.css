@@ -1,6 +1,8 @@
 input[type=text] {
-    width: 230px;
+    width: 500px;
     box-sizing: border-box;
+    margin: 0 auto;
+    display:block;
     border: 2px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
@@ -15,5 +17,5 @@ input[type=text] {
 }
 
 input[type=text]:focus {
-    width: 100%;
+    
 }
