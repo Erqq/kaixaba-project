@@ -26,8 +26,8 @@ a:hover {
     color: #F0FFFF;
 }
 
-.container {
-    min-width: 512px;
+#container {
+    min-width: 530px;
 }
 
 .col-xs-4 {
