@@ -139,7 +139,7 @@ var ResultItem = React.createClass({
                 <div className="col-xs-12"><p>Painopaikka:&nbsp;{camper.printLocation}</p></div>
                 <div className="col-xs-12"><p>Painomäärä:&nbsp;{camper.printAmount}</p></div>
                 <div className="col-xs-12"><p>Valuutta:&nbsp;{camper.currency}</p></div>
-                <div className="col-xs-12"><p>Taiteilija:&nbsp;{camper.artist}</p></div>
+                <div className="col-xs-12"><p>Taiteilija:&nbsp;{camper.artist.length ? camper.artist : 'Ei tiedossa' }</p></div>
 
 
             </div>
