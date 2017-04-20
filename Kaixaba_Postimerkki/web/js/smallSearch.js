@@ -54,9 +54,8 @@ class StampForm extends React.Component {
     <div>
       <form onSubmit={this.handleSubmit} name="myform">
           <br/>
-          <input type="text" name="tags" placeholder="Hae..."></input>
-          <br/>
-        <input type="submit" value="Etsi" />
+          <input type="text" name="tags" placeholder="Press Enter to Search..."></input>
+
       </form>
       
       <Result result={this.state.data}/>
@@ -102,14 +101,14 @@ var ResultItem = React.createClass({
                 <div className="stamp">
                 <div className="col-xs-12"><h3>{camper.name}</h3></div>
                 <div className="col-xs-12"><img src={camper.url} /></div>
-                <div className="col-xs-12"><p>Ilmestynyt:&nbsp;{camper.releaseDate}</p></div>
-                <div className="col-xs-12"><p>Poistunut:&nbsp;{camper.endDate}</p></div>
-                <div className="col-xs-12"><p>Väri:&nbsp;{camper.color}</p></div>
-                <div className="col-xs-12"><p>Nimellisarvo:&nbsp;{camper.value}</p></div>
-                <div className="col-xs-12"><p>Painopaikka:&nbsp;{camper.printLocation}</p></div>
-                <div className="col-xs-12"><p>Painomäärä:&nbsp;{camper.printAmount}</p></div>
-                <div className="col-xs-12"><p>Valuutta:&nbsp;{camper.currency}</p></div>
-                <div className="col-xs-12"><p>Taiteilija:&nbsp;{camper.artist}</p></div>
+                <div className="col-xs-12"><h4 id="otsikko">Ilmestynyt:&nbsp;</h4> <p>{camper.releaseDate}</p></div>
+                <div className="col-xs-12"><h4 id="otsikko">Poistunut:&nbsp;</h4> <p>{camper.endDate ? camper.endDate : 'Ei tiedossa' }</p></div>
+                <div className="col-xs-12"><h4 id="otsikko">Väri:&nbsp;</h4> <p>{camper.color ? camper.color : 'monivärinen' }</p></div>
+                <div className="col-xs-12"><h4 id="otsikko">Nimellisarvo:&nbsp;</h4> <p>{camper.value}</p></div>
+                <div className="col-xs-12"><h4 id="otsikko">Painopaikka:&nbsp;</h4> <p>{camper.printLocation}</p></div>
+                <div className="col-xs-12"><h4 id="otsikko">Painomäärä:&nbsp;</h4> <p>{camper.printAmount}</p></div>
+                <div className="col-xs-12"><h4 id="otsikko">Valuutta:&nbsp;</h4> <p>{camper.currency}</p></div>
+                <div className="col-xs-12"><h4 id="otsikko">Taiteilija:&nbsp;</h4> <p>{camper.artist.length ? camper.artist : 'Ei tiedossa' }</p></div>
 
 
                 </div>
