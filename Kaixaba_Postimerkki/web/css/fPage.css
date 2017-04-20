@@ -3,6 +3,29 @@ img {
     max-height: 200px;
 }
 
+#pagename { 
+    color: #FFFFFF;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 34px;
+    font-weight: 300;
+    line-height: 40px;
+    margin: 8px 20px; 
+    display: inline-block;
+}
+
+a {
+    color: #FFFFFF;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    line-height: 40px;
+    margin: 0px 20px; 
+    display: inline-block;
+}
+
+a:hover {
+    color: #F0FFFF;
+}
+
 .container {
     min-width: 512px;
 }
@@ -15,6 +38,16 @@ img {
     margin-top: 15px;
 }
 
+#tarkempi {
+    display: inline-block;
+    float: right;
+    margin: 15px 15px 0px 0px;
+}
+
+#headerbar {
+    height: 60px;
+    background-color: #003580;
+}
 
 .stamp {
     /*border: 1px solid #ccc;*/
