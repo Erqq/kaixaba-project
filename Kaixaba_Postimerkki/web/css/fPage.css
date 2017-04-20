@@ -12,37 +12,54 @@ img {
     
 }
 .col-xs-6{
-    height: 520px !important; 
+    margin-top: 15px;
 }
 
 
 .stamp {
-    border: 1px solid #ccc;
+    /*border: 1px solid #ccc;*/
+    background-color: #fafafa;
     width: 100%;
     margin: 5px 4% 5px 4%;
-    height: auto;
+    height: 800px;
     overflow: hidden;
     border-radius: 4px;
     
 }
 
 .col-xs-12 {
-    background: #fafafa;
     padding: 0px 0px
 }
 
 .col-xs-12 img {
     display: block;
-    margin: 0 auto;
+    margin: 0px auto 10px;
+}
+
+.col-xs-12 h4 {
+    display: block;
+    color: #111;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: -1px;
+    line-height: 1;
+    text-align: center;
+    margin: 0px 0px 5px 0px;
 }
 
 .col-xs-12 p {
     display: block;
     text-align: center;
+    margin: 0 0 15px;
 }
 
 .col-xs-12 h3 {
-    text-align: center;
-    margin: 10px 0% 10px 0%;
-    height: 40px;
+    height: auto;
+    color: #111; 
+    font-family: 'Open Sans Condensed', sans-serif; 
+    font-size: 20px; 
+    font-weight: bold;
+    line-height: 1;
+    text-align: center; 
+    margin: 15px 5px 15px 5px;
 }
