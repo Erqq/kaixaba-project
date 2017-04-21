@@ -60,31 +60,31 @@ class StampForm extends React.Component {
     <div>
       <form onSubmit={this.handleSubmit} name="myform">
           <label>Väri:</label>
-          <input type="text" name="color" defaultValue="" placeholder="Press Enter to Search..."/>
+          <input type="text" name="color" defaultValue="" placeholder="Esim. punainen"/>
           <br/>
           <label>Ilmestynyt:</label>
-          <input type="text" name="releaseDate" defaultValue="" placeholder="Press Enter to Search..."/>
+          <input type="text" name="releaseDate" defaultValue="" placeholder="Esim. 1950"/>
           <br/>
           <label>Poistunut:</label>
-          <input type="text" name="endDate" defaultValue="" placeholder="Press Enter to Search..."/>
+          <input type="text" name="endDate" defaultValue="" placeholder="Esim. 2000"/>
           <br/>
           <label>Nimellisarvo:</label>
-          <input type="text" name="value" defaultValue="" placeholder="Press Enter to Search..."/>
+          <input type="text" name="value" defaultValue="" placeholder="Esim. 10"/>
           <br/>
           <label>Nimi:</label>
-          <input type="text" name="name" defaultValue="" placeholder="Press Enter to Search..."/>
+          <input type="text" name="name" defaultValue="" placeholder="Esim. mestari"/>
           <br/>
           <label>Painopaikkaa:</label>
-          <input type="text" name="printLocation" defaultValue="" placeholder="Press Enter to Search..."/>
+          <input type="text" name="printLocation" defaultValue="" placeholder="Esim. setelipaino"/>
           <br/>
           <label>Painomäärä:</label>
-          <input type="text" name="printAmount" defaultValue="" placeholder="Press Enter to Search..."/>
+          <input type="text" name="printAmount" defaultValue="" placeholder="Esim. 2000000"/>
           <br/>
           <label>Taiteilija:</label>
-          <input type="text" name="artist" defaultValue="" placeholder="Press Enter to Search..."/>
+          <input type="text" name="artist" defaultValue="" placeholder="Esim. Wilhelm Brandstake"/>
           <br/>
           <label>Valuutta:</label>
-          <input type="text" name="currency" defaultValue="" placeholder="Press Enter to Search..."/>
+          <input type="text" name="currency" defaultValue="" placeholder="Esim. markka"/>
           <br/>
         <input type="submit" value="Hae" id="myButton"/>
       </form>

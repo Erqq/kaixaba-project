@@ -54,7 +54,7 @@ class StampForm extends React.Component {
     <div>
       <form onSubmit={this.handleSubmit} name="myform">
           <br/>
-          <input type="text" name="tags" placeholder="Press Enter to Search..."></input>
+          <input type="text" name="tags" placeholder="Paina enteriä hakeaksesi..."></input>
 
       </form>
       
