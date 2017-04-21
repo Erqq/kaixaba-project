@@ -29,6 +29,7 @@ public class SearchStamps extends HttpServlet {
     public SearchStamps(){
         super();
     }
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -38,7 +39,8 @@ public class SearchStamps extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request,
+            HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
@@ -49,7 +51,8 @@ public class SearchStamps extends HttpServlet {
             out.println("<title>Servlet SearchStamps</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SearchStamps at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SearchStamps at " 
+                    + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -64,7 +67,8 @@ public class SearchStamps extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request,
+            HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -80,19 +84,23 @@ public class SearchStamps extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, 
+            HttpServletResponse response)
             throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
-    InputStream stream = new ByteArrayInputStream(request.getReader().readLine().getBytes(StandardCharsets.UTF_8));
+    InputStream stream = new ByteArrayInputStream(request.getReader().readLine()
+            .getBytes(StandardCharsets.UTF_8));
     JsonReader jsonReader = Json.createReader(stream);
     JsonObject js = jsonReader.readObject();
     jsonReader.close();
     fixHeaders(response);
     List<Stamp> stamps;
     List<Stamp> temp=new ArrayList<>();
+    
         try (PrintWriter out = response.getWriter()) {
             stamps = stmp.getStamps();
-            for(int i = 0; i< stamps.size();i++){
+            
+            for(int i = 0; i < stamps.size();i++){
                 if(stamps.get(i).getArtist().toLowerCase().replace(" ","")
                         .contains(js.getString("artist").toLowerCase()
                                 .replace(" ",""))
@@ -134,9 +142,7 @@ public class SearchStamps extends HttpServlet {
                     out.println(temp.get(i).toJson());
                     if (i +1< temp.size()) {
                     out.println(", "); 
-                    }
-               
-                  
+                    } 
              }
             out.println("]");    
               
@@ -144,8 +150,8 @@ public class SearchStamps extends HttpServlet {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
     }
+    
     /**
      * Fixes the headers
      * @param request servlet request
@@ -153,18 +159,21 @@ public class SearchStamps extends HttpServlet {
      * @throws ServletException
      * @throws IOException 
      */
-    protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    fixHeaders(response);
-}
+    protected void doOptions(HttpServletRequest request,
+            HttpServletResponse response) throws ServletException, IOException {
+        fixHeaders(response);
+    }
+
     /**
      * Fixes the headers.
      * @param response servlet response
      */
     private void fixHeaders(HttpServletResponse response) {
-    response.addHeader("Access-Control-Allow-Origin", "*");
-    response.addHeader("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS, DELETE");
-    response.addHeader("Access-Control-Allow-Headers", "*");
-    response.addHeader("Access-Control-Max-Age", "86400");
-}
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        response.addHeader("Access-Control-Allow-Methods",
+                "GET, PUT, POST, OPTIONS, DELETE");
+        response.addHeader("Access-Control-Allow-Headers", "*");
+        response.addHeader("Access-Control-Max-Age", "86400");
+    }
 
 }

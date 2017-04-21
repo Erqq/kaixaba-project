@@ -36,7 +36,8 @@ public class getStamps extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request,
+            HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         fixHeaders(response);
@@ -73,10 +74,12 @@ public class getStamps extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
       @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request,
+            HttpServletResponse response)
             throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
-    InputStream stream = new ByteArrayInputStream(request.getReader().readLine().getBytes(StandardCharsets.UTF_8));
+    InputStream stream = new ByteArrayInputStream(request.
+            getReader().readLine().getBytes(StandardCharsets.UTF_8));
     JsonReader jsonReader = Json.createReader(stream);
     JsonObject js = jsonReader.readObject();
     jsonReader.close();
@@ -119,7 +122,8 @@ public class getStamps extends HttpServlet {
     
     private void fixHeaders(HttpServletResponse response) {
     response.addHeader("Access-Control-Allow-Origin", "*");
-    response.addHeader("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS, DELETE");
+    response.addHeader("Access-Control-Allow-Methods",
+            "GET, PUT, POST, OPTIONS, DELETE");
     response.addHeader("Access-Control-Allow-Headers", "Content-Type");
     response.addHeader("Access-Control-Max-Age", "86400");
 }
@@ -130,7 +134,8 @@ public class getStamps extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doOptions(HttpServletRequest request, 
+            HttpServletResponse response) throws ServletException, IOException {
     fixHeaders(response);
 }
 
