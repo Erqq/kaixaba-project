@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fi.siren;
 
 import java.io.ByteArrayInputStream;
@@ -24,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.Response;
 
 /**
- *
+ * Searches the stamps.
  * @author Erqq
  */
 @WebServlet(name = "SearchStamps", urlPatterns = {"/SearchStamps"})
@@ -34,6 +29,7 @@ public class SearchStamps extends HttpServlet {
     public SearchStamps(){
         super();
     }
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -43,7 +39,8 @@ public class SearchStamps extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request,
+            HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
@@ -54,13 +51,13 @@ public class SearchStamps extends HttpServlet {
             out.println("<title>Servlet SearchStamps</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SearchStamps at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SearchStamps at " 
+                    + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -70,14 +67,16 @@ public class SearchStamps extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request,
+            HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
     /**
      * Handles the HTTP <code>POST</code> method.
-     *
+     * Gets the stamps that are searched with the form.
+     * 
      * @param request servlet request
      * @param response servlet response
      * 
@@ -85,19 +84,23 @@ public class SearchStamps extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, 
+            HttpServletResponse response)
             throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
-    InputStream stream = new ByteArrayInputStream(request.getReader().readLine().getBytes(StandardCharsets.UTF_8));
+    InputStream stream = new ByteArrayInputStream(request.getReader().readLine()
+            .getBytes(StandardCharsets.UTF_8));
     JsonReader jsonReader = Json.createReader(stream);
     JsonObject js = jsonReader.readObject();
     jsonReader.close();
     fixHeaders(response);
     List<Stamp> stamps;
     List<Stamp> temp=new ArrayList<>();
+    
         try (PrintWriter out = response.getWriter()) {
             stamps = stmp.getStamps();
-            for(int i = 0; i< stamps.size();i++){
+            
+            for(int i = 0; i < stamps.size();i++){
                 if(stamps.get(i).getArtist().toLowerCase().replace(" ","")
                         .contains(js.getString("artist").toLowerCase()
                                 .replace(" ",""))
@@ -139,9 +142,7 @@ public class SearchStamps extends HttpServlet {
                     out.println(temp.get(i).toJson());
                     if (i +1< temp.size()) {
                     out.println(", "); 
-                    }
-               
-                  
+                    } 
              }
             out.println("]");    
               
@@ -149,28 +150,30 @@ public class SearchStamps extends HttpServlet {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
     }
     
-    protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    fixHeaders(response);
-}
-    
-    private void fixHeaders(HttpServletResponse response) {
-    response.addHeader("Access-Control-Allow-Origin", "*");
-    response.addHeader("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS, DELETE");
-    response.addHeader("Access-Control-Allow-Headers", "*");
-    response.addHeader("Access-Control-Max-Age", "86400");
-}
+    /**
+     * Fixes the headers
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException
+     * @throws IOException 
+     */
+    protected void doOptions(HttpServletRequest request,
+            HttpServletResponse response) throws ServletException, IOException {
+        fixHeaders(response);
+    }
 
     /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
+     * Fixes the headers.
+     * @param response servlet response
      */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+    private void fixHeaders(HttpServletResponse response) {
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        response.addHeader("Access-Control-Allow-Methods",
+                "GET, PUT, POST, OPTIONS, DELETE");
+        response.addHeader("Access-Control-Allow-Headers", "*");
+        response.addHeader("Access-Control-Max-Age", "86400");
+    }
 
 }
