@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- *
+ * Represents the stamp -entity
  * @author c5msiren
  */
 @Entity
