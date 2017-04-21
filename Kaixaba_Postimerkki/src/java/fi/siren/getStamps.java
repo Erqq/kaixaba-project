@@ -17,13 +17,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+/**
+ * Gets the stamps.
+ * @author Erqq
+ */
 @WebServlet(name = "getStamps", urlPatterns = {"/getStamps"})
 public class getStamps extends HttpServlet {
     
     @EJB
     public StampService stmp;
-
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     * Gets all stamps.
+     * 
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -51,6 +62,16 @@ public class getStamps extends HttpServlet {
             ex.printStackTrace();
         }
     }
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     * Gets the stamps that are searched with the tag.
+     * 
+     * @param request servlet request
+     * @param response servlet response
+     * 
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
       @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -91,7 +112,10 @@ public class getStamps extends HttpServlet {
         }
         
     }
-    
+    /**
+     * Fixes the headers.
+     * @param response 
+     */
     
     private void fixHeaders(HttpServletResponse response) {
     response.addHeader("Access-Control-Allow-Origin", "*");
@@ -99,7 +123,13 @@ public class getStamps extends HttpServlet {
     response.addHeader("Access-Control-Allow-Headers", "Content-Type");
     response.addHeader("Access-Control-Max-Age", "86400");
 }
-    
+    /**
+     * Fixes the headers.
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     fixHeaders(response);
 }

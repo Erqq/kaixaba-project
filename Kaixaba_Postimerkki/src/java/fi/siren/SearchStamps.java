@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fi.siren;
 
 import java.io.ByteArrayInputStream;
@@ -24,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.Response;
 
 /**
- *
+ * Searches the stamps.
  * @author Erqq
  */
 @WebServlet(name = "SearchStamps", urlPatterns = {"/SearchStamps"})
@@ -60,7 +55,6 @@ public class SearchStamps extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -77,7 +71,8 @@ public class SearchStamps extends HttpServlet {
 
     /**
      * Handles the HTTP <code>POST</code> method.
-     *
+     * Gets the stamps that are searched with the form.
+     * 
      * @param request servlet request
      * @param response servlet response
      * 
@@ -151,26 +146,25 @@ public class SearchStamps extends HttpServlet {
         }
         
     }
-    
+    /**
+     * Fixes the headers
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException
+     * @throws IOException 
+     */
     protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     fixHeaders(response);
 }
-    
+    /**
+     * Fixes the headers.
+     * @param response servlet response
+     */
     private void fixHeaders(HttpServletResponse response) {
     response.addHeader("Access-Control-Allow-Origin", "*");
     response.addHeader("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS, DELETE");
     response.addHeader("Access-Control-Allow-Headers", "*");
     response.addHeader("Access-Control-Max-Age", "86400");
 }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }
